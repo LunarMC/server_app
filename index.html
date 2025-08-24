@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-
   <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="192x192" href="web-app-manifest-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="web-app-manifest-512x512.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="web-app-manifest-512x512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -408,42 +407,71 @@
         padding: 20px;
       }
     }
+
+    /* لغة التبديل */
+    .language-switcher {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+    }
+    
+    .language-btn {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
+  <!-- تبديل اللغة -->
+  <div class="language-switcher">
+    <button class="language-btn" id="languageToggle">
+      <span>EN</span>
+      <i class="fas fa-globe"></i>
+    </button>
+  </div>
+
   <!-- القائمة -->
   <div class="sidebar">
     <div class="logo">
       <img src="novaminesmp.png" width="100" height="100">
-      <h1>NovamineSMP Server</h1>
-      <p>نظام طلبات الانضمام</p>
+      <h1 data-ar="NovamineSMP Server" data-en="NovamineSMP Server">NovamineSMP Server</h1>
+      <p data-ar="نظام طلبات الانضمام" data-en="Join Request System">نظام طلبات الانضمام</p>
     </div>
     
     <button onclick="showForm('staff')">
-      <span>طلب Staff</span>
+      <span data-ar="طلب Staff" data-en="Staff Application">طلب Staff</span>
       <i class="fas fa-users-cog"></i>
     </button>
     
     <button onclick="showForm('media')">
-      <span>طلب youtube</span>
+      <span data-ar="طلب youtube" data-en="YouTube Application">طلب youtube</span>
       <i class="fas fa-video"></i>
     </button>
     
     <button onclick="showForm('builder')">
-      <span>طلب Builder</span>
+      <span data-ar="طلب Builder" data-en="Builder Application">طلب Builder</span>
       <i class="fas fa-hammer"></i>
     </button>
 
     <!-- زر الانتقال إلى موقع آخر -->
     <button class="external-site-btn" onclick="goToExternalSite()">
-      <span>موقع القبول او الرفض</span>
+      <span data-ar="موقع القبول او الرفض" data-en="Acceptance/Rejection Site">موقع القبول او الرفض</span>
       <i class="fas fa-external-link-alt"></i>
     </button>
     
     <div class="server-info">
-      <h3><i class="fas fa-server"></i> معلومات السيرفر</h3>
+      <h3><i class="fas fa-server"></i> <span data-ar="معلومات السيرفر" data-en="Server Information">معلومات السيرفر</span></h3>
       <p>IP: NovaMineSMP.aternos.me</p>
-      <p>الإصدار: 1.9.x - 1.21.9</p>
+      <p data-ar="الإصدار: 1.9.x - 1.21.9" data-en="Version: 1.9.x - 1.21.9">الإصدار: 1.9.x - 1.21.9</p>
     </div>
   </div>
 
@@ -452,8 +480,8 @@
     <!-- نموذج Staff -->
     <div class="form-container" id="staff">
       <div class="form-header">
-        <h3>📋 طلب الإنضمام إلى طاقم الإدارة </h3>
-        <p>املأ النموذج التالي بعناية للانضمام إلى فريق الإدارة</p>
+        <h3 data-ar="📋 طلب الإنضمام إلى طاقم الإدارة" data-en="📋 Staff Application">📋 طلب الإنضمام إلى طاقم الإدارة</h3>
+        <p data-ar="املأ النموذج التالي بعناية للانضمام إلى فريق الإدارة" data-en="Fill out the following form carefully to join the staff team">املأ النموذج التالي بعناية للانضمام إلى فريق الإدارة</p>
       </div>
       
       <div class="progress-bar">
@@ -465,152 +493,157 @@
       
       <form id="staff-form" action="https://formsubmit.co/MohhamedGamesYT@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="طلب جديد للانضمام كـ Staff">
+        <input type="hidden" name="_subject" value="New Staff Application - NovamineSMP">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
         
         <div class="form-section active" id="staff-section1">
-          <div class="form-indicator">المعلومات الأساسية (1/4)</div>
+          <div class="form-indicator" data-ar="المعلومات الأساسية (1/4)" data-en="Basic Information (1/4)">المعلومات الأساسية (1/4)</div>
           
           <div class="form-group">
-            <label for="discord-name">اسمك في ديسكورد</label>
-            <input type="text" id="discord-name" name="discord_name" placeholder="اكتب اسمك في ديسكورد" required>
+            <label for="discord-name" data-ar="اسمك في ديسكورد" data-en="Your Discord Name">اسمك في ديسكورد</label>
+            <input type="text" id="discord-name" name="Discord Name" placeholder="اكتب اسمك في ديسكورد" required>
           </div>
           
           <div class="form-group">
-            <label for="minecraft-name">اسمك في ماينكرافت</label>
-            <input type="text" id="minecraft-name" name="minecraft_name" placeholder="اكتب اسمك في ماينكرافت" required>
+            <label for="minecraft-name" data-ar="اسمك في ماينكرافت" data-en="Your Minecraft Name">اسمك في ماينكرافت</label>
+            <input type="text" id="minecraft-name" name="Minecraft Name" placeholder="اكتب اسمك في ماينكرافت" required>
           </div>
           
           <div class="form-group">
-            <label for="age">كم عمرك؟</label>
-            <input type="number" id="age" name="age" min="10" max="60" placeholder="أدخل عمرك" required>
+            <label for="age" data-ar="كم عمرك؟" data-en="How old are you?">كم عمرك؟</label>
+            <input type="number" id="age" name="Age" min="10" max="60" placeholder="أدخل عمرك" required>
           </div>
 
           <div class="form-group">
-            <label for="age">اذا احد سوا /report لشخص انت شنو راح تسوي</label>
-            <input type="text" id="minecraft-name" name="minecraft_name" placeholder="اكتب اسمك في ماينكرافت" required>
+            <label for="report-action" data-ar="اذا احد سوا /report لشخص انت شنو راح تسوي" data-en="If someone does /report on a player, what will you do?">اذا احد سوا /report لشخص انت شنو راح تسوي</label>
+            <input type="text" id="report-action" name="Report Action" placeholder="اشرح إجراءاتك" required>
           </div>
 
           <div class="form-group">
-            <label for="age"></label>اذا احد طلب منك رتبه راح تعطيه او لا</label>
-            <input type="text" id="minecraft-name" name="minecraft_name" placeholder="اكتب اسمك في ماينكرافت" required>
+            <label for="rank-request" data-ar="اذا احد طلب منك رتبه راح تعطيه او لا" data-en="If someone asks you for a rank, will you give it to them or not?">اذا احد طلب منك رتبه راح تعطيه او لا</label>
+            <input type="text" id="rank-request" name="Rank Request Handling" placeholder="اكتب إجابتك" required>
           </div>
           
-          <button type="button" class="next-btn nav-btn" onclick="nextSection('staff', 2)">التالي <i class="fas fa-arrow-left"></i></button>
+          <button type="button" class="next-btn nav-btn" onclick="nextSection('staff', 2)">
+            <span data-ar="التالي" data-en="Next">التالي</span> 
+            <i class="fas fa-arrow-left"></i>
+          </button>
         </div>
         
         <div class="form-section" id="staff-section2">
-          <div class="form-indicator">الخبرة والوقت (2/4)</div>
+          <div class="form-indicator" data-ar="الخبرة والوقت (2/4)" data-en="Experience & Time (2/4)">الخبرة والوقت (2/4)</div>
           
           <div class="form-group">
-            <label for="play-week">كم ساعة تلعب في الأسبوع؟</label>
-            <input type="text" id="play-week" name="play_week" placeholder="عدد الساعات في الأسبوع" required>
+            <label for="play-week" data-ar="كم ساعة تلعب في الأسبوع؟" data-en="How many hours do you play per week?">كم ساعة تلعب في الأسبوع؟</label>
+            <input type="text" id="play-week" name="Play Hours Per Week" placeholder="عدد الساعات في الأسبوع" required>
           </div>
           
           <div class="form-group">
-            <label for="play-day">كم ساعة تلعب في اليوم؟</label>
-            <input type="text" id="play-day" name="play_day" placeholder="عدد الساعات في اليوم" required>
+            <label for="play-day" data-ar="كم ساعة تلعب في اليوم؟" data-en="How many hours do you play per day?">كم ساعة تلعب في اليوم؟</label>
+            <input type="text" id="play-day" name="Play Hours Per Day" placeholder="عدد الساعات في اليوم" required>
           </div>
           
           <div class="form-group">
-            <label for="admin-experience">هل أنت حالياً أدمن في سيرفر آخر؟</label>
-            <select id="admin-experience" name="admin_experience" required>
+            <label for="admin-experience" data-ar="هل أنت حالياً أدمن في سيرفر آخر؟" data-en="Are you currently an admin on another server?">هل أنت حالياً أدمن في سيرفر آخر؟</label>
+            <select id="admin-experience" name="Current Admin Elsewhere" required>
               <option value="">اختر الإجابة</option>
-              <option value="نعم">نعم</option>
-              <option value="لا">لا</option>
+              <option value="نعم" data-ar="نعم" data-en="Yes">نعم</option>
+              <option value="لا" data-ar="لا" data-en="No">لا</option>
             </select>
           </div>
 
-
           <div class="form-group">
-            <label for="admin-experience"> اذا احد طلب منك رتبه راح تعطيه او لا</label>
-            <select id="admin-experience" name="admin_experience" required>
-              <option value="">اختر الإجابة</option>
-              <option value="نعم">نعم</option>
-              <option value="لا">لا</option>
-            </select>
+            <label for="violation-examples" data-ar="اذكر مثال على مخالفة بسيطة ومخالفة كبيرة" data-en="Give an example of a minor violation and a major violation">اذكر مثال على مخالفة بسيطة ومخالفة كبيرة</label>
+            <input type="text" id="violation-examples" name="Violation Examples" placeholder="اذكر مثال على مخالفة بسيطة ومخالفة كبيرة" required>
           </div>
-
-
-          <div class="form-group">
-            <label for="play-day"> اذكر مثال على مخالفة بسيطة ومخالفة كبيرة.</label>
-            <input type="text" id="play-day" name="play_day" placeholder=" اذكر مثال على مخالفة بسيطة ومخالفة كبيرة." required>
-          </div>
-
-          
           
           <div class="nav-buttons">
-            <button type="button" class="prev-btn nav-btn" onclick="prevSection('staff', 1)"><i class="fas fa-arrow-right"></i> السابق</button>
-            <button type="button" class="next-btn nav-btn" onclick="nextSection('staff', 3)">التالي <i class="fas fa-arrow-left"></i></button>
+            <button type="button" class="prev-btn nav-btn" onclick="prevSection('staff', 1)">
+              <i class="fas fa-arrow-right"></i> 
+              <span data-ar="السابق" data-en="Previous">السابق</span>
+            </button>
+            <button type="button" class="next-btn nav-btn" onclick="nextSection('staff', 3)">
+              <span data-ar="التالي" data-en="Next">التالي</span> 
+              <i class="fas fa-arrow-left"></i>
+            </button>
           </div>
         </div>
         
         <div class="form-section" id="staff-section3">
-          <div class="form-indicator">السيناريوهات الإدارية (3/4)</div>
+          <div class="form-indicator" data-ar="السيناريوهات الإدارية (3/4)" data-en="Administrative Scenarios (3/4)">السيناريوهات الإدارية (3/4)</div>
           
           <div class="form-group">
-            <label for="spam-action">إذا أحد سوا سبام، شنو راح تسوي؟</label>
-            <textarea id="spam-action" name="spam_action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="spam-action" data-ar="إذا أحد سوا سبام، شنو راح تسوي؟" data-en="If someone spams, what will you do?">إذا أحد سوا سبام، شنو راح تسوي؟</label>
+            <textarea id="spam-action" name="Spam Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
           
           <div class="form-group">
-            <label for="inappropriate-action">كيف ستتعامل مع لاعب يبني أشياء غير لائقة داخل اللعبة؟</label>
-            <textarea id="inappropriate-action" name="inappropriate_action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="inappropriate-action" data-ar="كيف ستتعامل مع لاعب يبني أشياء غير لائقة داخل اللعبة؟" data-en="How will you deal with a player building inappropriate things in the game?">كيف ستتعامل مع لاعب يبني أشياء غير لائقة داخل اللعبة؟</label>
+            <textarea id="inappropriate-action" name="Inappropriate Build Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
           
 
           <div class="form-group">
-            <label for="inappropriate-action">اذا شكيت احد يستعمل XRAY كم يوم راح تبنده</label>
-            <textarea id="inappropriate-action" name="inappropriate_action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="xray-ban" data-ar="اذا شكيت احد يستعمل XRAY كم يوم راح تبنده" data-en="If you suspect someone is using XRAY, how many days will you ban them?">اذا شكيت احد يستعمل XRAY كم يوم راح تبنده</label>
+            <textarea id="xray-ban" name="XRAY Ban Duration" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
 
           <div class="form-group">
-            <label for="link-action">قام أحد اللاعبين بنشر رابط ضار أو غير واضح في المحادثة، كيف ستتصرف؟</label>
-            <textarea id="link-action" name="link_action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="link-action" data-ar="قام أحد اللاعبين بنشر رابط ضار أو غير واضح في المحادثة، كيف ستتصرف؟" data-en="A player posted a harmful or unclear link in the chat, how will you act?">قام أحد اللاعبين بنشر رابط ضار أو غير واضح في المحادثة، كيف ستتصرف؟</label>
+            <textarea id="link-action" name="Harmful Link Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
 
           <div class="form-group">
-            <label for="link-action">اذا شفت واحد شغل هاك مو xray يعني مثل fly speed killaura كم يوم راح تبنده </label>
-            <textarea id="link-action" name="link_action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="hack-ban" data-ar="اذا شفت واحد شغل هاك مو xray يعني مثل fly speed killaura كم يوم راح تبنده" data-en="If you see someone using hacks (not xray) like fly, speed, killaura, how many days will you ban them?">اذا شفت واحد شغل هاك مو xray يعني مثل fly speed killaura كم يوم راح تبنده</label>
+            <textarea id="hack-ban" name="Hack Ban Duration" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
 
           
           <div class="nav-buttons">
-            <button type="button" class="prev-btn nav-btn" onclick="prevSection('staff', 2)"><i class="fas fa-arrow-right"></i> السابق</button>
-            <button type="button" class="next-btn nav-btn" onclick="nextSection('staff', 4)">التالي <i class="fas fa-arrow-left"></i></button>
+            <button type="button" class="prev-btn nav-btn" onclick="prevSection('staff', 2)">
+              <i class="fas fa-arrow-right"></i> 
+              <span data-ar="السابق" data-en="Previous">السابق</span>
+            </button>
+            <button type="button" class="next-btn nav-btn" onclick="nextSection('staff', 4)">
+              <span data-ar="التالي" data-en="Next">التالي</span> 
+              <i class="fas fa-arrow-left"></i>
+            </button>
           </div>
         </div>
         
         <div class="form-section" id="staff-section4">
-          <div class="form-indicator">أسئلة إدارية (4/4)</div>
+          <div class="form-indicator" data-ar="أسئلة إدارية (4/4)" data-en="Administrative Questions (4/4)">أسئلة إدارية (4/4)</div>
           
           <div class="form-group">
-            <label for="server-problem">إذا صارت مشكلة بالسيرفر، انت شنو راح تسوي؟</label>
-            <textarea id="server-problem" name="server_problem" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="server-problem" data-ar="إذا صارت مشكلة بالسيرفر، انت شنو راح تسوي؟" data-en="If there is a problem with the server, what will you do?">إذا صارت مشكلة بالسيرفر، انت شنو راح تسوي؟</label>
+            <textarea id="server-problem" name="Server Problem Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
           
           <div class="form-group">
-            <label for="wrong-order">لو أعطاك أدمن أمر وانت تشوفه غلط، وش تسوي?</label>
-            <textarea id="wrong-order" name="wrong_order" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
+            <label for="wrong-order" data-ar="لو أعطاك أدمن أمر وانت تشوفه غلط، وش تسوي?" data-en="If an admin gives you an order that you think is wrong, what will you do?">لو أعطاك أدمن أمر وانت تشوفه غلط، وش تسوي?</label>
+            <textarea id="wrong-order" name="Wrong Order Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
           
           <div class="form-group">
-            <label for="violation-example">اذكر مثال على مخالفة بسيطة ومخالفة كبيرة</label>
-            <textarea id="violation-example" name="violation_example" placeholder="اذكر أمثلة على أنواع المخالفات" required></textarea>
+            <label for="rules-importance" data-ar="برأيك، ليش القوانين مهمة في السيرفر؟" data-en="In your opinion, why are rules important in the server?">برأيك، ليش القوانين مهمة في السيرفر؟</label>
+            <textarea id="rules-importance" name="Rules Importance" placeholder="اشرح أهمية القوانين في السيرفر" required></textarea>
           </div>
           
           <div class="form-group">
-            <label for="rules-importance">برأيك، ليش القوانين مهمة في السيرفر؟</label>
-            <textarea id="rules-importance" name="rules_importance" placeholder="اشرح أهمية القوانين في السيرفر" required></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label for="preference">هل تفضل تنظيم مسابقات أو مراقبة الشات؟ ولماذا؟</label>
-            <textarea id="preference" name="preference" placeholder="اذكر تفضيلك وسبب ذلك" required></textarea>
+            <label for="preference" data-ar="هل تفضل تنظيم مسابقات أو مراقبة الشات؟ ولماذا؟" data-en="Do you prefer organizing events or monitoring chat? And why?">هل تفضل تنظيم مسابقات أو مراقبة الشات؟ ولماذا؟</label>
+            <textarea id="preference" name="Preference" placeholder="اذكر تفضيلك وسبب ذلك" required></textarea>
           </div>
           
           <div class="nav-buttons">
-            <button type="button" class="prev-btn nav-btn" onclick="prevSection('staff', 3)"><i class="fas fa-arrow-right"></i> السابق</button>
-            <button type="submit" class="submit-btn">إرسال الطلب <i class="fas fa-paper-plane"></i></button>
+            <button type="button" class="prev-btn nav-btn" onclick="prevSection('staff', 3)">
+              <i class="fas fa-arrow-right"></i> 
+              <span data-ar="السابق" data-en="Previous">السابق</span>
+            </button>
+            <button type="submit" class="submit-btn">
+              <span data-ar="إرسال الطلب" data-en="Submit Application">إرسال الطلب</span> 
+              <i class="fas fa-paper-plane"></i>
+            </button>
           </div>
         </div>
       </form>
@@ -619,41 +652,46 @@
     <!-- نموذج Media -->
     <div class="form-container" id="media">
       <div class="form-header">
-        <h3>🎥 طلب الإنضمام لفريق youtube</h3>
-        <p>املأ النموذج التالي للانضمام إلى فريق الإعلام</p>
+        <h3 data-ar="🎥 طلب الإنضمام لفريق youtube" data-en="🎥 YouTube Team Application">🎥 طلب الإنضمام لفريق youtube</h3>
+        <p data-ar="املأ النموذج التالي للانضمام إلى فريق الإعلام" data-en="Fill out the following form to join the media team">املأ النموذج التالي للانضمام إلى فريق الإعلام</p>
       </div>
       
       <form action="https://formsubmit.co/MohhamedGamesYT@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="طلب جديد للانضمام كـ Media">
+        <input type="hidden" name="_subject" value="New Media Application - NovamineSMP">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
 
         <div class="form-group">
-          <label for="media-discord">اسمك في ديسكورد</label>
-          <input type="text" id="media-discord" name="discord" placeholder="اسمك في ديسكورد" required>
+          <label for="media-discord" data-ar="اسمك في ديسكورد" data-en="Your Discord Name">اسمك في ديسكورد</label>
+          <input type="text" id="media-discord" name="Discord Name" placeholder="اسمك في ديسكورد" required>
         </div>
         
         
         <div class="form-group">
-          <label for="media-discord">اسمك في ماينكرافت</label>
-          <input type="text" id="media-discord" name="discord" placeholder="اسمك في ماينكرافت" required>
+          <label for="media-minecraft" data-ar="اسمك في ماينكرافت" data-en="Your Minecraft Name">اسمك في ماينكرافت</label>
+          <input type="text" id="media-minecraft" name="Minecraft Name" placeholder="اسمك في ماينكرافت" required>
         </div>
         
         <div class="form-group">
-          <label for="media-channel">رابط قناتك (يوتيوب/تيك توك...)</label>
-          <input type="url" id="media-channel" name="channel" placeholder="https://youtube.com/..." required>
+          <label for="media-channel" data-ar="رابط قناتك (يوتيوب/تيك توك...)" data-en="Your Channel Link (YouTube/TikTok...)">رابط قناتك (يوتيوب/تيك توك...)</label>
+          <input type="url" id="media-channel" name="Channel Link" placeholder="https://youtube.com/..." required>
         </div>
         
         <div class="form-group">
-          <label for="media-followers">كم عدد المتابعين عندك؟</label>
-          <textarea id="media-followers" name="followers" placeholder="اذكر عدد المتابعين في كل منصة" required></textarea>
+          <label for="media-followers" data-ar="كم عدد المتابعين عندك؟" data-en="How many followers do you have?">كم عدد المتابعين عندك؟</label>
+          <textarea id="media-followers" name="Followers Count" placeholder="اذكر عدد المتابعين في كل منصة" required></textarea>
         </div>
         
         <div class="form-group">
-          <label for="media-reason">ليش حاب تنضم كـ Media في السيرفر؟</label>
-          <textarea id="media-reason" name="reason" placeholder="اشرح أسباب رغبتك في الانضمام لفريق Media" required></textarea>
+          <label for="media-reason" data-ar="ليش حاب تنضم كـ Media في السيرفر؟" data-en="Why do you want to join as Media in the server?">ليش حاب تنضم كـ Media في السيرفر؟</label>
+          <textarea id="media-reason" name="Reason for Joining" placeholder="اشرح أسباب رغبتك في الانضمام لفريق Media" required></textarea>
         </div>
         
-        <button type="submit" class="submit-btn">إرسال الطلب <i class="fas fa-paper-plane"></i></button>
+        <button type="submit" class="submit-btn">
+          <span data-ar="إرسال الطلب" data-en="Submit Application">إرسال الطلب</span> 
+          <i class="fas fa-paper-plane"></i>
+        </button>
       </form>
     </div>
 
@@ -661,51 +699,58 @@
      
     <div class="form-container" id="builder">
       <div class="form-header">
-        <h3>🏗️ طلب الإنضمام كـ Builder</h3>
-        <p>املأ النموذج التالي للانضمام إلى فريق البناء</p>
+        <h3 data-ar="🏗️ طلب الإنضمام كـ Builder" data-en="🏗️ Builder Application">🏗️ طلب الإنضمام كـ Builder</h3>
+        <p data-ar="املأ النموذج التالي للانضمام إلى فريق البناء" data-en="Fill out the following form to join the building team">املأ النموذج التالي للانضمام إلى فريق البناء</p>
       </div>
       
       <form action="https://formsubmit.co/MohhamedGamesYT@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="طلب جديد للانضمام كـ Builder">
+        <input type="hidden" name="_subject" value="New Builder Application - NovamineSMP">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html">
         
         <div class="form-group">
-          <label for="builder-discord">من كم سنة أو شهر تبني في ماينكرافت؟</label>
-          <input type="text" id="builder-discord" name="discord" placeholder="من كم سنة أو شهر تبني في ماينكرافت؟" required>
+          <label for="builder-experience" data-ar="من كم سنة أو شهر تبني في ماينكرافت؟" data-en="How many years/months have you been building in Minecraft?">من كم سنة أو شهر تبني في ماينكرافت؟</label>
+          <input type="text" id="builder-experience" name="Building Experience" placeholder="من كم سنة أو شهر تبني في ماينكرافت؟" required>
         </div>
         
         <div class="form-group">
-          <label for="builder-experience">أي أسلوب بناء تفضله (حديث، فانتازي، ميديفال، ريفي؟)</label>
-          <textarea id="builder-experience" name="experience" placeholder="اذكر خبراتك في البناء وما هي المشاريع التي عملت عليها" required></textarea>
+          <label for="builder-style" data-ar="أي أسلوب بناء تفضله (حديث، فانتازي، ميديفال، ريفي؟)" data-en="Which building style do you prefer (modern, fantasy, medieval, rustic)?">أي أسلوب بناء تفضله (حديث، فانتازي، ميديفال، ريفي؟)</label>
+          <textarea id="builder-style" name="Preferred Building Style" placeholder="اذكر خبراتك في البناء وما هي المشاريع التي عملت عليها" required></textarea>
         </div>
         
         <div class="form-group">
-          <label for="builder-portfolio">رابط صور/فيديوهات لأعمالك (لو موجود)</label>
-          <textarea id="builder-portfolio" name="portfolio" placeholder="ضع روابط لأعمالك السابقة"></textarea>
+          <label for="builder-portfolio" data-ar="رابط صور/فيديوهات لأعمالك (لو موجود)" data-en="Link to images/videos of your work (if available)">رابط صور/فيديوهات لأعمالك (لو موجود)</label>
+          <textarea id="builder-portfolio" name="Portfolio Links" placeholder="ضع روابط لأعمالك السابقة"></textarea>
         </div>
         
         <div class="form-group">
-          <label for="builder-reason">هل تقدر تبني من خيالك أم تحتاج صورة ؟</label>
-          <textarea id="builder-reason" name="reason" placeholder="هل تقدر تبني من خيالك أم تحتاج صورة ؟" required></textarea>
+          <label for="builder-imagination" data-ar="هل تقدر تبني من خيالك أم تحتاج صورة ؟" data-en="Can you build from your imagination or do you need a reference image?">هل تقدر تبني من خيالك أم تحتاج صورة ؟</label>
+          <textarea id="builder-imagination" name="Building From Imagination" placeholder="هل تقدر تبني من خيالك أم تحتاج صورة ؟" required></textarea>
         </div>
 
 
         <div class="form-group">
-          <label for="media-discord">اسمك في ديسكورد</label>
-          <input type="text" id="media-discord" name="discord" placeholder="اسمك في ديسكورد" required>
+          <label for="builder-discord" data-ar="اسمك في ديسكورد" data-en="Your Discord Name">اسمك في ديسكورد</label>
+          <input type="text" id="builder-discord" name="Discord Name" placeholder="اسمك في ديسكورد" required>
         </div>
         
          <div class="form-group">
-          <label for="media-discord">اسمك في ماينكرافت</label>
-          <input type="text" id="media-discord" name="discord" placeholder="اسمك في ماينكرافت" required>
+          <label for="builder-minecraft" data-ar="اسمك في ماينكرافت" data-en="Your Minecraft Name">اسمك في ماينكرافت</label>
+          <input type="text" id="builder-minecraft" name="Minecraft Name" placeholder="اسمك في ماينكرافت" required>
         </div>
 
-        <button type="submit" class="submit-btn">إرسال الطلب <i class="fas fa-paper-plane"></i></button>
+        <button type="submit" class="submit-btn">
+          <span data-ar="إرسال الطلب" data-en="Submit Application">إرسال الطلب</span> 
+          <i class="fas fa-paper-plane"></i>
+        </button>
       </form>
     </div>
   </div>
 
   <script>
+    let currentLanguage = 'ar';
+    
     function showForm(id) {
       document.querySelectorAll('.form-container').forEach(form => {
         form.classList.remove('active');
@@ -716,6 +761,9 @@
     // عرض نموذج Staff افتراضياً
     document.addEventListener('DOMContentLoaded', function() {
       showForm('staff');
+      
+      // إضافة حدث لتبديل اللغة
+      document.getElementById('languageToggle').addEventListener('click', toggleLanguage);
     });
     
     // وظائف التنقل بين الأقسام
@@ -745,8 +793,38 @@
     
     // وظيفة الانتقال إلى موقع آخر
     function goToExternalSite() {
-      // يمكنك تغيير الرابط هنا إلى الموقع الذي تريد الانتقال إليه
       window.location.href = "https://acceptservernove.github.io/Minesmp/";
+    }
+    
+    // وظيفة تبديل اللغة
+    function toggleLanguage() {
+      currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+      updateLanguage();
+    }
+    
+    // تحديث المحتوى بناءً على اللغة المحددة
+    function updateLanguage() {
+      // تحديث نص الزر
+      const toggleBtn = document.getElementById('languageToggle');
+      toggleBtn.querySelector('span').textContent = currentLanguage === 'ar' ? 'EN' : 'AR';
+      
+      // تحديث جميع العناصر التي تحتوي على بيانات اللغة
+      document.querySelectorAll('[data-ar], [data-en]').forEach(element => {
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+          // العناصر من نوع input و textarea (النصوص البديلة)
+          element.placeholder = element.getAttribute(`data-${currentLanguage}`);
+        } else if (element.tagName === 'OPTION') {
+          // عناصر option
+          element.textContent = element.getAttribute(`data-${currentLanguage}`);
+        } else {
+          // جميع العناصر الأخرى
+          element.textContent = element.getAttribute(`data-${currentLanguage}`);
+        }
+      });
+      
+      // تحديث اتجاه الصفحة
+      document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.lang = currentLanguage;
     }
   </script>
 </body>
