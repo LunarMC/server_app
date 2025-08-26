@@ -12,16 +12,22 @@
   <title>طلبات الإنضمام - NovamineSMP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --primary-color: #870790;
-      --primary-dark: #870790;
+      --primary-dark: #6a066e;
+      --primary-light: #a639ad;
       --secondary-color: #2c3e50;
+      --accent-color: #ff5722;
       --light-color: #f4f4f4;
+      --dark-color: #222;
       --success-color: #28a745;
       --warning-color: #ffc107;
+      --gradient-start: #870790;
+      --gradient-end: #500554;
+      --neon-glow: 0 0 10px rgba(135, 7, 144, 0.7), 0 0 20px rgba(135, 7, 144, 0.5), 0 0 30px rgba(135, 7, 144, 0.3);
     }
     
     * {
@@ -32,26 +38,47 @@
     
     body {
       font-family: "Cairo", Arial, sans-serif;
-      background: linear-gradient(135deg, #f4f4f4 0%, #e2e2e2 100%);
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
       margin: 0;
       display: flex;
       min-height: 100vh;
-      color: #333;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="%23000000" width="200" height="200"/><path fill="%23170819" d="M0 100L100 0L200 100L100 200Z"/></svg>') 0 0 / 300px 300px;
+      opacity: 0.2;
+      z-index: -1;
+      animation: backgroundMove 100s linear infinite;
+    }
+    
+    @keyframes backgroundMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 300px 300px; }
     }
     
     /* الشريط الجانبي */
     .sidebar {
-      width: 260px;
-      background: linear-gradient(to bottom, var(--primary-color), var(--primary-dark));
+      width: 300px;
+      background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
       color: #fff;
       padding: 25px 15px;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
       z-index: 10;
       position: relative;
       overflow-y: auto;
+      transition: all 0.3s ease;
     }
     
     .logo {
@@ -59,11 +86,30 @@
       margin-bottom: 20px;
       padding-bottom: 15px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      animation: logoLine 3s ease-in-out infinite;
+    }
+    
+    @keyframes logoLine {
+      0%, 100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
     }
     
     .logo h1 {
-      font-size: 24px;
+      font-size: 28px;
       margin: 0;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
     
     .logo p {
@@ -72,39 +118,78 @@
       margin-top: 5px;
     }
     
+    .logo img {
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .logo img:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    }
+    
     .sidebar button {
-      background: rgba(255, 255, 255, 0.9);
-      color: var(--primary-color);
-      border: none;
-      padding: 14px;
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 16px;
+      border-radius: 12px;
       cursor: pointer;
       font-size: 16px;
       font-weight: bold;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
       width: 100%;
       text-align: right;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .sidebar button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
     }
     
     .sidebar button:hover {
-      background: #fff;
-      transform: translateX(-5px);
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-5px) translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
+    }
+    
+    .sidebar button:hover::before {
+      left: 100%;
     }
     
     .sidebar button i {
-      font-size: 18px;
+      font-size: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .sidebar button:hover i {
+      transform: scale(1.2);
     }
     
     .server-info {
       margin-top: auto;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.3);
       padding: 15px;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 14px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
     
     .server-info h3 {
@@ -112,18 +197,18 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--accent-color);
     }
 
     /* زر الانتقال لموقع آخر */
     .external-site-btn {
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      color: #fff;
+      background: rgba(255, 87, 34, 0.2);
+      border: 1px solid rgba(255, 87, 34, 0.3);
     }
     
     .external-site-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      border-color: #fff;
+      background: rgba(255, 87, 34, 0.3);
+      box-shadow: 0 0 15px rgba(255, 87, 34, 0.4);
     }
     
     /* منطقة المحتوى */
@@ -134,18 +219,45 @@
       align-items: flex-start;
       padding: 30px;
       overflow-y: auto;
+      position: relative;
     }
     
     .form-container {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, rgba(30, 30, 50, 0.9) 0%, rgba(20, 20, 40, 0.9) 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--neon-glow);
       padding: 30px;
       width: 100%;
-      max-width: 700px;
+      max-width: 750px;
       display: none;
       animation: fadeIn 0.5s ease;
       position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+    }
+    
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 6s infinite linear;
+      z-index: 0;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .form-container > * {
+      position: relative;
+      z-index: 1;
     }
     
     .form-container.active {
@@ -154,21 +266,26 @@
     
     .form-header {
       text-align: center;
-      color: var(--primary-color);
+      color: #fff;
       margin-bottom: 25px;
       padding-bottom: 15px;
-      border-bottom: 2px solid #eee;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
       position: relative;
+      text-shadow: 0 0 10px rgba(135, 7, 144, 0.7);
     }
     
     .form-header h3 {
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 5px;
+      background: linear-gradient(45deg, #fff, var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
     }
     
     .form-header p {
-      color: #666;
-      font-size: 15px;
+      color: #ccc;
+      font-size: 16px;
     }
     
     .form-header::after {
@@ -178,31 +295,42 @@
       left: 40%;
       width: 20%;
       height: 3px;
-      background: var(--primary-color);
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
       border-radius: 3px;
+      animation: headerLine 3s ease-in-out infinite;
+    }
+    
+    @keyframes headerLine {
+      0%, 100% { transform: scaleX(0.5); opacity: 0.5; }
+      50% { transform: scaleX(1); opacity: 1; }
     }
     
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      position: relative;
     }
     
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-weight: 600;
-      color: var(--secondary-color);
+      color: var(--primary-light);
+      font-size: 16px;
     }
     
     .form-container input,
     .form-container textarea,
     .form-container select {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 15px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      font-size: 16px;
       font-family: "Cairo", sans-serif;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      color: #fff;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     
     .form-container input:focus,
@@ -210,32 +338,55 @@
     .form-container select:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(190, 22, 34, 0.2);
+      box-shadow: 0 0 0 3px rgba(135, 7, 144, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.4);
+    }
+    
+    .form-container input::placeholder,
+    .form-container textarea::placeholder {
+      color: #aaa;
     }
     
     .form-container textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: vertical;
     }
     
     .submit-btn {
-      background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: #fff;
-      padding: 16px;
+      padding: 18px;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
       width: 100%;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: bold;
-      transition: all 0.3s;
-      margin-top: 15px;
-      box-shadow: 0 3px 7px rgba(190, 22, 34, 0.3);
+      transition: all 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(135, 7, 144, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: all 0.5s ease;
     }
     
     .submit-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 12px rgba(190, 22, 34, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(135, 7, 144, 0.6);
+    }
+    
+    .submit-btn:hover::before {
+      left: 100%;
     }
     
     .submit-btn:active {
@@ -245,31 +396,37 @@
     .progress-bar {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       position: relative;
     }
     
     .progress-step {
-      width: 35px;
-      height: 35px;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
-      background: #eee;
+      background: rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
       color: #777;
       z-index: 2;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
     }
     
     .progress-step.active {
       background: var(--primary-color);
       color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px var(--primary-color);
     }
     
     .progress-step.completed {
       background: var(--success-color);
       color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 15px var(--success-color);
     }
     
     .progress-bar::before {
@@ -278,10 +435,11 @@
       top: 50%;
       left: 0;
       right: 0;
-      height: 3px;
-      background: #eee;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
       transform: translateY(-50%);
       z-index: 1;
+      border-radius: 2px;
     }
     
     .form-section {
@@ -296,66 +454,87 @@
     .nav-buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 25px;
+      margin-top: 30px;
+      gap: 15px;
     }
     
     .nav-btn {
-      padding: 12px 25px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     .prev-btn {
-      background: #f0f0f0;
-      color: #333;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .prev-btn:hover {
-      background: #e0e0e0;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(-3px);
     }
     
     .next-btn {
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
       color: white;
     }
     
     .next-btn:hover {
-      background: var(--primary-dark);
+      transform: translateX(3px);
+      box-shadow: 0 5px 15px rgba(135, 7, 144, 0.4);
     }
     
     .form-indicator {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 14px;
-      color: #666;
+      margin-bottom: 25px;
+      font-size: 16px;
+      color: #bbb;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
     
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
     .success-message {
       display: none;
       text-align: center;
-      padding: 30px;
-      background: #f9f9f9;
-      border-radius: 10px;
+      padding: 40px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
       margin-top: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     
     .success-message i {
-      font-size: 60px;
+      font-size: 70px;
       color: var(--success-color);
       margin-bottom: 20px;
+      text-shadow: 0 0 20px var(--success-color);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
     
     .success-message h3 {
-      color: var(--success-color);
+      color: #fff;
       margin-bottom: 15px;
+      font-size: 24px;
     }
     
     /* تصميم متجاوب */
@@ -381,7 +560,7 @@
       .sidebar button {
         width: auto;
         flex: 1;
-        min-width: 120px;
+        min-width: 140px;
         font-size: 14px;
       }
       
@@ -406,31 +585,98 @@
       .form-container {
         padding: 20px;
       }
+      
+      .nav-buttons {
+        flex-direction: column;
+      }
+      
+      .nav-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     /* لغة التبديل */
     .language-switcher {
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 20px;
       z-index: 100;
     }
     
     .language-btn {
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      padding: 8px 15px;
-      border-radius: 20px;
+      background: rgba(30, 30, 50, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 18px;
+      border-radius: 25px;
       cursor: pointer;
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+    
+    .language-btn:hover {
+      background: rgba(50, 50, 80, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* تأثيرات الجسيمات */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(135, 7, 144, 0.3);
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100vw) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    
+    /* تأثيرات النص */
+    .glowing-text {
+      text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor; }
+      to { text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor; }
     }
   </style>
 </head>
 <body>
+  <!-- تأثير الجسيمات -->
+  <div class="particles" id="particles"></div>
+  
   <!-- تبديل اللغة -->
   <div class="language-switcher">
     <button class="language-btn" id="languageToggle">
@@ -442,7 +688,7 @@
   <!-- القائمة -->
   <div class="sidebar">
     <div class="logo">
-      <img src="novaminesmp.png" width="100" height="100">
+      <img src="novaminesmp.png" width="100" height="100" alt="NovamineSMP Logo">
       <h1 data-ar="NovamineSMP Server" data-en="NovamineSMP Server">NovamineSMP Server</h1>
       <p data-ar="نظام طلبات الانضمام" data-en="Join Request System">نظام طلبات الانضمام</p>
     </div>
@@ -755,12 +1001,57 @@
       document.getElementById(id).classList.add('active');
     }
     
+    // إنشاء تأثير الجسيمات
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // أحجام وألوان عشوائية
+        const size = Math.random() * 10 + 5;
+        const colors = [
+          'rgba(135, 7, 144, 0.5)',
+          'rgba(255, 87, 34, 0.5)',
+          'rgba(40, 167, 69, 0.5)',
+          'rgba(255, 193, 7, 0.5)'
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.background = color;
+        
+        // مواقع عشوائية
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        
+        particle.style.left = `${posX}vw`;
+        particle.style.top = `${posY}vh`;
+        
+        // مدة وتأخير عشوائي للحركة
+        const duration = Math.random() * 20 + 15;
+        const delay = Math.random() * 5;
+        
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
     // عرض نموذج Staff افتراضياً
     document.addEventListener('DOMContentLoaded', function() {
       showForm('staff');
+      createParticles();
       
       // إضافة حدث لتبديل اللغة
       document.getElementById('languageToggle').addEventListener('click', toggleLanguage);
+      
+      // إضافة تأثيرات عند التمرير
+      window.addEventListener('scroll', handleScroll);
     });
     
     // وظائف التنقل بين الأقسام
@@ -822,6 +1113,20 @@
       // تحديث اتجاه الصفحة
       document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
       document.documentElement.lang = currentLanguage;
+    }
+    
+    // تأثيرات التمرير
+    function handleScroll() {
+      const forms = document.querySelectorAll('.form-container');
+      forms.forEach(form => {
+        const formTop = form.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (formTop < windowHeight * 0.75) {
+          form.style.transform = 'translateY(0)';
+          form.style.opacity = '1';
+        }
+      });
     }
   </script>
 </body>
