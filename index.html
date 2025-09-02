@@ -9,16 +9,16 @@
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>طلبات الإنضمام - NovamineSMP</title>
+  <title>طلبات الإنضمام - LUNAR MC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #870790;
-      --primary-dark: #6a066e;
-      --primary-light: #a639ad;
+      --primary-color: #000000;
+      --primary-dark: #ffffff;
+      --primary-light: #b77b7b;
       --secondary-color: #2c3e50;
       --accent-color: #ff5722;
       --light-color: #f4f4f4;
@@ -26,8 +26,8 @@
       --success-color: #28a745;
       --warning-color: #ffc107;
       --gradient-start: #870790;
-      --gradient-end: #500554;
-      --neon-glow: 0 0 10px rgba(135, 7, 144, 0.7), 0 0 20px rgba(135, 7, 144, 0.5), 0 0 30px rgba(135, 7, 144, 0.3);
+      --gradient-end: #ffffffad;
+      --neon-glow: 0 0 10px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255), 0 0 30px rgba(135, 7, 144, 0.3);
     }
     
     * {
@@ -688,8 +688,8 @@
   <!-- القائمة -->
   <div class="sidebar">
     <div class="logo">
-      <img src="novaminesmp.png" width="100" height="100" alt="NovamineSMP Logo">
-      <h1 data-ar="NovamineSMP Server" data-en="NovamineSMP Server">NovamineSMP Server</h1>
+      <img src="novaminesmp.png" width="100" height="100" alt="LUNAR MC">
+      <h1 data-ar="LUNAR MC" data-en="LUNAR MC">LUNAR MC</h1>
       <p data-ar="نظام طلبات الانضمام" data-en="Join Request System">نظام طلبات الانضمام</p>
     </div>
     
@@ -739,7 +739,7 @@
       
       <form id="staff-form" action="https://formsubmit.co/MohhamedGamesYT@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New Staff Application - NovamineSMP">
+        <input type="hidden" name="_subject" value="New Staff Application - LUNAR MC">
         <input type="hidden" name="_template" value="table">
         
         <div class="form-section active" id="staff-section1">
@@ -756,17 +756,17 @@
           </div>
           
           <div class="form-group">
-            <label for="age" data-ar="كم عمرك؟" data-en="How old are you?">كم عمرك؟</label>
+            <label for="age" data-ar="كم عمرك؟" data-en="How old are you?"> (في حال الكذب يمكن إضافتك كBlacklist تقديم الاداره) كم عمرك؟</label>
             <input type="number" id="age" name="Age" min="10" max="60" placeholder="أدخل عمرك" required>
           </div>
 
           <div class="form-group">
-            <label for="report-action" data-ar="اذا احد سوا /report لشخص انت شنو راح تسوي" data-en="If someone does /report on a player, what will you do?">اذا احد سوا /report لشخص انت شنو راح تسوي</label>
+            <label for="report-action" data-ar="هل لديك امكانيه بتصوير فيديوهات عاليه الجوده او متوسطه ؟" data-en="Do you have the ability to shoot high-quality or medium-quality videos?">هل لديك امكانيه بتصوير فيديوهات عاليه الجوده او متوسطه ؟</label>
             <input type="text" id="report-action" name="Report Action" placeholder="اشرح إجراءاتك" required>
           </div>
 
           <div class="form-group">
-            <label for="rank-request" data-ar="اذا احد طلب منك رتبه راح تعطيه او لا" data-en="If someone asks you for a rank, will you give it to them or not?">اذا احد طلب منك رتبه راح تعطيه او لا</label>
+            <label for="rank-request" data-ar="ماهي خبراتك بشكل مفصل جدا جدا جدا ؟" data-en="What are your experiences in very very very detail?">ماهي خبراتك بشكل مفصل جدا جدا جدا ؟</label>
             <input type="text" id="rank-request" name="Rank Request Handling" placeholder="اكتب إجابتك" required>
           </div>
           
@@ -799,8 +799,8 @@
           </div>
 
           <div class="form-group">
-            <label for="violation-examples" data-ar="اذكر مثال على مخالفة بسيطة ومخالفة كبيرة" data-en="Give an example of a minor violation and a major violation">اذكر مثال على مخالفة بسيطة ومخالفة كبيرة</label>
-            <input type="text" id="violation-examples" name="Violation Examples" placeholder="اذكر مثال على مخالفة بسيطة ومخالفة كبيرة" required>
+            <label for="violation-examples" data-ar="هل اشتغلت كأداري في سيرفر سابقا ؟" data-en="Have you worked as an administrator on a server before?">هل اشتغلت كأداري في سيرفر سابقا ؟</label>
+            <input type="text" id="violation-examples" name="Violation Examples" placeholder="هل اشتغلت كأداري في سيرفر سابقا ؟" required>
           </div>
           
           <div class="nav-buttons">
@@ -819,12 +819,14 @@
           <div class="form-indicator" data-ar="السيناريوهات الإدارية (3/4)" data-en="Administrative Scenarios (3/4)">السيناريوهات الإدارية (3/4)</div>
           
           <div class="form-group">
-            <label for="spam-action" data-ar="إذا أحد سوا سبام، شنو راح تسوي؟" data-en="If someone spams, what will you do?">إذا أحد سوا سبام، شنو راح تسوي؟</label>
+            <label for="spam-action" data-ar=" اذا احد سوه سبام بالشات ايش العقوبه المناسبه له وكم ساعه او كم يوم؟" data-en="If someone spams in the chat, what is the appropriate punishment for them and how many hours or days?">اذا احد سوه سبام بالشات ايش العقوبه المناسبه له وكم ساعه او كم يوم؟</label>
             <textarea id="spam-action" name="Spam Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
           
           <div class="form-group">
-            <label for="inappropriate-action" data-ar="كيف ستتعامل مع لاعب يبني أشياء غير لائقة داخل اللعبة؟" data-en="How will you deal with a player building inappropriate things in the game?">كيف ستتعامل مع لاعب يبني أشياء غير لائقة داخل اللعبة؟</label>
+            <label for="inappropriate-action" data-ar="اذا مشغل هاك متوسط ك (reach-aim assist- auto clicker)
+كيف راح تتعامل معاه ؟" data-en="If someone is using a medium hack like (reach-aim assist- auto clicker), how will you deal with it??">اذا مشغل هاك متوسط ك (reach-aim assist- auto clicker)
+كيف راح تتعامل معاه ؟</label>
             <textarea id="inappropriate-action" name="Inappropriate Build Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
           
@@ -835,12 +837,12 @@
           </div>
 
           <div class="form-group">
-            <label for="link-action" data-ar="قام أحد اللاعبين بنشر رابط ضار أو غير واضح في المحادثة، كيف ستتصرف؟" data-en="A player posted a harmful or unclear link in the chat, how will you act?">قام أحد اللاعبين بنشر رابط ضار أو غير واضح في المحادثة، كيف ستتصرف؟</label>
+            <label for="link-action" data-ar="اذا احد نشر رابط ضار او غير واضح او حط ايبي سيرفر في الشات كيف راح تتعامل معاه" data-en="If someone shares a harmful or unclear link or puts an IP server in the chat, how will you handle them?">اذا احد نشر رابط ضار او غير واضح او حط ايبي سيرفر في الشات كيف راح تتعامل معاه</label>
             <textarea id="link-action" name="Harmful Link Action" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
 
           <div class="form-group">
-            <label for="hack-ban" data-ar="اذا شفت واحد شغل هاك مو xray يعني مثل fly speed killaura كم يوم راح تبنده" data-en="If you see someone using hacks (not xray) like fly, speed, killaura, how many days will you ban them?">اذا شفت واحد شغل هاك مو xray يعني مثل fly speed killaura كم يوم راح تبنده</label>
+            <label for="hack-ban" data-ar=" اذا احد شغل هاك قوي (killaura - speed - fly ) كيف راح تتعامل معاه" data-en="If someone is using a strong hack (killaura - speed - fly), how will you deal with them?"> اذا احد شغل هاك قوي (killaura - speed - fly ) كيف راح تتعامل معاه</label>
             <textarea id="hack-ban" name="Hack Ban Duration" placeholder="اشرح كيف ستتعامل مع هذه المشكلة" required></textarea>
           </div>
 
@@ -871,12 +873,12 @@
           </div>
           
           <div class="form-group">
-            <label for="rules-importance" data-ar="برأيك، ليش القوانين مهمة في السيرفر؟" data-en="In your opinion, why are rules important in the server?">برأيك، ليش القوانين مهمة في السيرفر؟</label>
-            <textarea id="rules-importance" name="Rules Importance" placeholder="اشرح أهمية القوانين في السيرفر" required></textarea>
+            <label for="rules-importance" data-ar="اذا احد استفزك كيف راح تتعامل معاه؟" data-en="If someone provokes you, how will you deal with them?">اذا احد استفزك كيف راح تتعامل معاه؟</label>
+            <textarea id="rules-importance" name="Rules Importance" placeholder="اذا احد استفزك كيف راح تتعامل معاه؟" required></textarea>
           </div>
           
           <div class="form-group">
-            <label for="preference" data-ar="هل تفضل تنظيم مسابقات أو مراقبة الشات؟ ولماذا؟" data-en="Do you prefer organizing events or monitoring chat? And why?">هل تفضل تنظيم مسابقات أو مراقبة الشات؟ ولماذا؟</label>
+            <label for="preference" data-ar=" واحد قاعد يسب بالشات او يستخدم كلمات عنصريه كيف راح تتعامل معاه؟" data-en="If someone is cursing in the chat or using racist words, how are you going to deal with him?"> واحد قاعد يسب بالشات او يستخدم كلمات عنصريه كيف راح تتعامل معاه؟</label>
             <textarea id="preference" name="Preference" placeholder="اذكر تفضيلك وسبب ذلك" required></textarea>
           </div>
           
