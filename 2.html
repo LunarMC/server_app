@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوانين الطاقم الإداري - LunarMC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        /* شاشة إدخال كلمة المرور */
+        .password-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            width: 100%;
+        }
+        
+        .password-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .password-form h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .password-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px #4cc9f0;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #4361ee, #3a0ca3);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        /* شاشة القوانين (مخفية في البداية) */
+        .rules-screen {
+            display: none;
+            width: 100%;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .rules-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .rank-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .rank-section:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .rank-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .rank-icon {
+            font-size: 2.5rem;
+            margin-left: 15px;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .rank-title {
+            font-size: 1.8rem;
+            color: #4cc9f0;
+        }
+        
+        .rules-list {
+            text-align: right;
+            padding-right: 20px;
+        }
+        
+        .rule-item {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            position: relative;
+        }
+        
+        .rule-item::before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .general-rules {
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+        
+        .general-rules .rank-title {
+            color: #f44336;
+        }
+        
+        .general-rules .rank-icon {
+            background: linear-gradient(45deg, #f44336, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .back-btn {
+            margin-top: 40px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* تأثيرات متحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .rank-section {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .rank-section:nth-child(1) { animation-delay: 0.1s; }
+        .rank-section:nth-child(2) { animation-delay: 0.2s; }
+        .rank-section:nth-child(3) { animation-delay: 0.3s; }
+        .rank-section:nth-child(4) { animation-delay: 0.4s; }
+        .rank-section:nth-child(5) { animation-delay: 0.5s; }
+        .rank-section:nth-child(6) { animation-delay: 0.6s; }
+        .rank-section:nth-child(7) { animation-delay: 0.7s; }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .password-form {
+                padding: 30px 20px;
+            }
+            
+            .rank-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .rank-icon {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- شاشة إدخال كلمة المرور -->
+        <div class="password-screen" id="passwordScreen">
+            <div class="password-form">
+                <h2>الدخول إلى قوانين الطاقم الإداري</h2>
+                <p>يجب إدخال كلمة المرور للوصول إلى هذه الصفحة</p>
+                <input type="password" class="password-input" id="passwordInput" placeholder="أدخل كلمة المرور هنا">
+                <button class="submit-btn" id="submitBtn">دخول</button>
+                <p class="error-message" id="errorMessage">كلمة المرور غير صحيحة، يرجى المحاولة مرة أخرى</p>
+            </div>
+        </div>
+        
+        <!-- شاشة القوانين (ستظهر بعد إدخال كلمة المرور الصحيحة) -->
+        <div class="rules-screen" id="rulesScreen">
+            <header>
+                <h1>قوانين الطاقم الإداري</h1>
+                <p class="subtitle">LunarMC - هذه القوانين خاصة بأعضاء الطاقم الإداري فقط</p>
+            </header>
+            
+            <div class="rules-container">
+                <div class="rank-section">
+                    <div class="rank-header">
+                        <i class="fas fa-hands-helping rank-icon"></i>
+                        <h2 class="rank-title">1. Helper (المساعد)</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">مساعدة اللاعبين الجدد والإجابة على أسئلتهم.</p>
+                        <p class="rule-item">مراقبة الشات والإبلاغ عن المخالفات الي عقابها باند ل Mod أو أعلى.</p>
+                        <p class="rule-item">الحياد التام وعدم الدخول في مشاكل اللاعبين.</p>
+                    </div>
+                </div>
+                
+                <div class="rank-section">
+                    <div class="rank-header">
+                        <i class="fas fa-user-shield rank-icon"></i>
+                        <h2 class="rank-title">2. MOD (المشرف)</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">مراقبة الشات ومنع السبام / السب / الإعلانات.</p>
+                        <p class="rule-item">إعطاء Mute / Kick / ban عند الحاجة.</p>
+                        <p class="rule-item">ممنوع استغلال الصلاحيات للعب أو مساعدة الأصدقاء.</p>
+                        <p class="rule-item">توثيق المخالفات بالصور أو الفيديو عند الإمكان.</p>
+                    </div>
+                </div>
+                
+                <div class="rank-section">
+                    <div class="rank-header">
+                        <i class="fas fa-user-tie rank-icon"></i>
+                        <h2 class="rank-title">3. SR-MOD (المشرف الأعلى)</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">مراجعة عمل الـ MOD وتوجيههم.</p>
+                        <p class="rule-item">التدخل في النزاعات بين اللاعبين عند الحاجة.</p>
+                        <p class="rule-item">رفع التقارير إلى Admin أو Manager عن أي مشاكل متكررة.</p>
+                    </div>
+                </div>
+                
+                <div class="rank-section">
+                    <div class="rank-header">
+                        <i class="fas fa-cogs rank-icon"></i>
+                        <h2 class="rank-title">4. Admin (الإداري)</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">الإشراف على Mods و Sr-Mods والتأكد من التزامهم بالقوانين.</p>
+                        <p class="rule-item">مراجعة طلبات الاستئناف (Unban Appeals).</p>
+                        <p class="rule-item">مسؤولية حماية السيرفر من التخريب أو الاختراق.</p>
+                    </div>
+                </div>
+                
+                <div class="rank-section">
+                    <div class="rank-header">
+                        <i class="fas fa-code rank-icon"></i>
+                        <h2 class="rank-title">5. Dev (المطور)</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">مسؤول عن تطوير السيرفر (Plugins – Config – Fix Bugs).</p>
+                        <p class="rule-item">ليس له الحق في التدخل في العقوبات الإدارية إلا إذا كان يحمل رتبة إدارية أيضًا.</p>
+                        <p class="rule-item">ممنوع استخدام صلاحيات التطوير للتجربة داخل السيرفر الأساسي (فقط Test Server).</p>
+                        <p class="rule-item">الإبلاغ عن أي مشاكل تقنية للـ Manager أو Owner.</p>
+                    </div>
+                </div>
+                
+                <div class="rank-section">
+                    <div class="rank-header">
+                        <i class="fas fa-user-cog rank-icon"></i>
+                        <h2 class="rank-title">6. Manager (المدير)</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">الإشراف الكامل على الطاقم (Helper → Admin).</p>
+                        <p class="rule-item">اتخاذ القرارات النهائية في القضايا الكبيرة.</p>
+                        <p class="rule-item">متابعة عمل الـ Dev والتأكد من سير التطوير كما يجب.</p>
+                        <p class="rule-item">التواصل المباشر مع Owner بخصوص المشاكل الكبيرة.</p>
+                    </div>
+                </div>
+                
+                <div class="rank-section general-rules">
+                    <div class="rank-header">
+                        <i class="fas fa-exclamation-triangle rank-icon"></i>
+                        <h2 class="rank-title">⚠️ قوانين عامة لكل الرتب</h2>
+                    </div>
+                    <div class="rules-list">
+                        <p class="rule-item">الاحترام المتبادل بين الطاقم واللاعبين.</p>
+                        <p class="rule-item">ممنوع استغلال الصلاحيات لمصالح شخصية.</p>
+                        <p class="rule-item">أي إساءة استخدام قد تؤدي إلى إنزال الرتبة أو الطرد.</p>
+                        <p class="rule-item">الالتزام بالتواجد والنشاط في السيرفر.</p>
+                        <p class="rule-item">توثيق جميع العقوبات والإجراءات الإدارية.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="back-btn" id="backBtn">العودة إلى شاشة الدخول</button>
+        </div>
+    </div>
+
+    <script>
+        // كلمة المرور الصحيحة (يمكن تغييرها)
+        const CORRECT_PASSWORD = "13841384";
+        
+        // عناصر DOM
+        const passwordScreen = document.getElementById('passwordScreen');
+        const rulesScreen = document.getElementById('rulesScreen');
+        const passwordInput = document.getElementById('passwordInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const backBtn = document.getElementById('backBtn');
+        
+        // التحقق من كلمة المرور
+        submitBtn.addEventListener('click', function() {
+            const enteredPassword = passwordInput.value.trim();
+            
+            if (enteredPassword === CORRECT_PASSWORD) {
+                // كلمة المرور صحيحة، إظهار القوانين
+                passwordScreen.style.display = 'none';
+                rulesScreen.style.display = 'block';
+            } else {
+                // كلمة المرور خاطئة، عرض رسالة الخطأ
+                errorMessage.style.display = 'block';
+                passwordInput.style.border = '2px solid #f44336';
+                
+                // إخفاء رسالة الخطأ بعد 3 ثواني
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                    passwordInput.style.border = 'none';
+                }, 3000);
+            }
+        });
+        
+        // السماح بالدخول باستخدام زر Enter
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+        
+        // زر العودة إلى شاشة الدخول
+        backBtn.addEventListener('click', function() {
+            rulesScreen.style.display = 'none';
+            passwordScreen.style.display = 'flex';
+            passwordInput.value = '';
+        });
+        
+        // تأثيرات عند تحميل الصفحة
+        window.addEventListener('load', function() {
+            passwordInput.focus();
+        });
+    </script>
+</body>
+</html>
