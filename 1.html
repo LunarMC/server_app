@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوانين سيرفر LunarMC</title>
+    <style>
+        /* تنسيقات عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ترويسة الموقع */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* قسم القوانين */
+        .rules-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .rule-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .rule-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(45deg, #f72585, #b5179e);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.4);
+        }
+        
+        .rule-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #4cc9f0;
+            padding-right: 50px;
+        }
+        
+        .rule-description {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+        
+        .punishment {
+            background: rgba(244, 67, 54, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border-right: 4px solid #f44336;
+            font-weight: bold;
+            color: #ff8a80;
+        }
+        
+        /* تذييل الصفحة */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* تأثيرات متحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .rule-card {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .rule-card:nth-child(1) { animation-delay: 0.1s; }
+        .rule-card:nth-child(2) { animation-delay: 0.2s; }
+        .rule-card:nth-child(3) { animation-delay: 0.3s; }
+        .rule-card:nth-child(4) { animation-delay: 0.4s; }
+        .rule-card:nth-child(5) { animation-delay: 0.5s; }
+        .rule-card:nth-child(6) { animation-delay: 0.6s; }
+        .rule-card:nth-child(7) { animation-delay: 0.7s; }
+        .rule-card:nth-child(8) { animation-delay: 0.8s; }
+        .rule-card:nth-child(9) { animation-delay: 0.9s; }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .rules-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .rule-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>قوانين سيرفر LunarMC</h1>
+            <p class="subtitle">مرحباً بكم في مجتمع LunarMC. يرجى الالتزام بالقوانين التالية لضمان تجربة لعب ممتعة للجميع.</p>
+        </header>
+        
+        <section class="rules-section">
+            <div class="rule-card">
+                <div class="rule-number">1</div>
+                <h3 class="rule-title">ممنوع الهاك</h3>
+                <p class="rule-description">ممنوع استخدام أي نوع من أنواع الهاك أو البرامج المساعدة في جميع الألعاب وبكل الطرق.</p>
+                <div class="punishment">العقاب: باند 30 يوم</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">2</div>
+                <h3 class="rule-title">ممنوع نشر الروابط</h3>
+                <p class="rule-description">ممنوع نشر روابط سيرفرات أخرى أو أيبي سيرفرات في أي قناة من قنوات السيرفر.</p>
+                <div class="punishment">العقاب: باند IP تسعين يوم</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">3</div>
+                <h3 class="rule-title">ممنوع السبام</h3>
+                <p class="rule-description">ممنوع إرسال الرسائل المتكررة أو السبام في الشات بأي شكل من الأشكال.</p>
+                <div class="punishment">العقاب: ميوت ساعتين</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">4</div>
+                <h3 class="rule-title">ممنوع منشن الإدارة</h3>
+                <p class="rule-description">يمنع منشن الإدارة عدا Helper و Mod و Mod+ فقط. أي منشن غير مسموح به سيؤدي إلى عقاب.</p>
+                <div class="punishment">العقاب: ميوت 15 دقيقة</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">5</div>
+                <h3 class="rule-title">ممنوع السب</h3>
+                <p class="rule-description">ممنوع استخدام الألفاظ النابية أو السب في الشات أو تجاه أي لاعب آخر.</p>
+                <div class="punishment">العقاب: ميوت 8 ساعات</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">6</div>
+                <h3 class="rule-title">ممنوع العنصرية</h3>
+                <p class="rule-description">ممنوع التمييز أو التعليقات العنصرية بأي شكل من الأشكال ضد أي لاعب.</p>
+                <div class="punishment">العقاب: باند IP شهرين</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">7</div>
+                <h3 class="rule-title">ممنوع تكرار الحروف</h3>
+                <p class="rule-description">ممنوع تكرار الحروف في الكلمة الواحدة مثل (Mohammmmmmmmmmmed).</p>
+                <div class="punishment">العقاب: تحذير - ميوت 4 ساعات</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">8</div>
+                <h3 class="rule-title">ممنوع التيم في PVP</h3>
+                <p class="rule-description">ممنوع التيم في وضع سولو بالألعاب التالية: Bed Wars, Sky Wars, PVP, CPVP, FFA.</p>
+                <div class="punishment">العقاب: باند يومين</div>
+            </div>
+            
+            <div class="rule-card">
+                <div class="rule-number">9</div>
+                <h3 class="rule-title">ممنوع التجارة</h3>
+                <p class="rule-description">ممنوع القيام بأي نوع من أنواع التجارة داخل السيرفر.</p>
+                <div class="punishment">العقاب: باند دائم IP</div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 LunarMC - جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <script>
+        // إضافة تأثيرات تفاعلية بسيطة
+        document.addEventListener('DOMContentLoaded', function() {
+            const ruleCards = document.querySelectorAll('.rule-card');
+            
+            ruleCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
